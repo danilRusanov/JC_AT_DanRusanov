@@ -4,37 +4,81 @@ import main.java.project.additive.Bubbles;
 
 public class SparklingWater extends Water {
 
-    public Boolean statusIsOpened = false;
-    public Bubbles[] bubbles;
-    public Boolean hasBubbles = false;
+    private Boolean isOpened = false;
+    private Bubbles[] bubbles;
+    private boolean hasWarmed;
+
+
+    public SparklingWater() {
+        checkIsOpened();
+    }
 
     public void pump(Bubbles[] bubbles) {
+        //который сетает массив из пузырьков в воду
+        System.out.print("Метод сетает массив из пузырьков в воду");
         this.bubbles = bubbles;
-        if (bubbles.length > 0) {
-            this.hasBubbles = true;
+        for (int i = 0; i < bubbles.length; i++) {
+            this.bubbles[i] = new Bubbles("O2");
         }
     }
 
-    public Bubbles[] isOpened(Bubbles[] bubbles) throws InterruptedException {
-        while (this.hasBubbles) {
-            for (int i = 0; i < bubbles.length; i++) {
-                degas();
-                Thread.sleep(2000);
-                if (statusIsOpened == false) {
-                    return new Bubbles[bubbles.length - i];
+    public void setOpened(Boolean opened) {
+        isOpened = opened;
+    }
+
+
+    public void checkIsOpened() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (!isOpened) {
+                    System.out.println("Bottle is closed");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+                }
+                System.out.println("Открыли бутылку");
+                try {
+                    degas();
+                } catch (Exception interruptedException) {
+                    interruptedException.printStackTrace();
                 }
             }
-            this.hasBubbles = false;
+        };
+        thread.start();
+    }
+
+    private void degas() throws InterruptedException {
+        int time = 0;
+        while (this.bubbles.length > 0 && this.isOpened) {
+            if (this.hasWarmed && this.getTemperature() < 41) {
+                time++;
+                if (time > 60) {
+                    int temperature = this.getTemperature();
+                    temperature++;
+                    this.setTemperature(temperature);
+                    System.out.println("Temperature is set to: " + temperature);
+                    time = 0;
+                }
+            }
+            int count = 0;
+            for (double i = 0; i < ((this.getTemperature() * 5 + 10)) && i < this.bubbles.length; i++) {
+                count++;
+                new Bubbles("CO2").cramp();
+                this.bubbles = new Bubbles[this.bubbles.length - 1];
+            }
+            if (this.bubbles.length > 0) {
+                isSparkle();
+            }
+            System.out.println("Bubbles were pumped in bottle №" + " : " + count);
+            System.out.println("Bubbles left in bottle №" + " : " + this.bubbles.length);
+            Thread.sleep(1000);
         }
-        return new Bubbles[0];
     }
 
-    public void setStatusIsOpened(Boolean b){
-        statusIsOpened = b;
+    public boolean isSparkle() {
+        return true;
     }
-    public void degas() {
-        Bubbles bubbles = new Bubbles("CO2");
-        bubbles.boom();
-    }
-
 }
