@@ -66,9 +66,9 @@ public class SparklingWater extends Water {
     private void degas() throws InterruptedException {
         int time = 0;
         while (this.bubbles.length > 0 && this.isOpened) {
-            if (this.hasWarmed && this.getTemperature() < 41) {
+            if (this.hasWarmed && this.getTemperature() <= 40) {
                 time++;
-                if (time > 3) {
+                if (time > 0) {
                     int temperature = this.getTemperature();
                     temperature++;
                     this.setTemperature(temperature);
@@ -77,10 +77,19 @@ public class SparklingWater extends Water {
                 }
             }
             int count = 0;
-            for (double i = 0; i < ((this.getTemperature() * 5 + 10)) && i < this.bubbles.length; i++) {
-                count++;
-                new Bubbles("CO2").cramp();
-                this.bubbles = new Bubbles[this.bubbles.length - 1];
+            if (((this.getTemperature() * 5) + 10) > this.bubbles.length) {
+                while (this.bubbles.length != 0) {
+                    count++;
+                    new Bubbles("CO2").cramp();
+                    this.bubbles = new Bubbles[this.bubbles.length - 1];
+                }
+            }
+            if (((this.getTemperature() * 5 + 10))  <= this.bubbles.length) {
+                for (int i = 0; i < ((this.getTemperature() * 5 + 10)); i++) {
+                    count++;
+                    new Bubbles("CO2").cramp();
+                    this.bubbles = new Bubbles[this.bubbles.length - 1];
+                }
             }
             if (this.bubbles.length > 0) {
                 isSparkle();

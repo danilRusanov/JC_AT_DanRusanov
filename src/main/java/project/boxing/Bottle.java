@@ -1,6 +1,5 @@
 package main.java.project.boxing;
 
-import class_work.B;
 import main.java.project.additive.Bubbles;
 import main.java.project.water.SparklingWater;
 
@@ -27,7 +26,7 @@ public class Bottle {
 
     public void warm(int temperature) {
         //который устанавливает температуру воды в бутылке
-        System.out.println(String.format("устанавливает температуру воды в бутылке равную %s" + temperature));
+        System.out.println(String.format("устанавливает температуру воды в бутылке равную %s ", temperature));
         this.sparklingWater.setTemperature(temperature);
     }
 
