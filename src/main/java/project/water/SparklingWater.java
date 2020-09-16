@@ -13,6 +13,15 @@ public class SparklingWater extends Water {
         checkIsOpened();
     }
 
+
+    public void setOpened(Boolean opened) {
+        isOpened = opened;
+    }
+
+    public void setHasWarmed(boolean hasWarmed) {
+        this.hasWarmed = hasWarmed;
+    }
+
     public void pump(Bubbles[] bubbles) {
         //который сетает массив из пузырьков в воду
         System.out.print("Метод сетает массив из пузырьков в воду");
@@ -20,12 +29,16 @@ public class SparklingWater extends Water {
         for (int i = 0; i < bubbles.length; i++) {
             this.bubbles[i] = new Bubbles("O2");
         }
+        System.out.println("length in pump " + bubbles.length);
     }
 
-    public void setOpened(Boolean opened) {
-        isOpened = opened;
+    public void setBubbles(Bubbles[] bubbles) {
+        this.bubbles = bubbles;
     }
 
+    public Bubbles[] getBubbles() {
+        return bubbles;
+    }
 
     public void checkIsOpened() {
         Thread thread = new Thread() {
@@ -55,7 +68,7 @@ public class SparklingWater extends Water {
         while (this.bubbles.length > 0 && this.isOpened) {
             if (this.hasWarmed && this.getTemperature() < 41) {
                 time++;
-                if (time > 60) {
+                if (time > 3) {
                     int temperature = this.getTemperature();
                     temperature++;
                     this.setTemperature(temperature);

@@ -12,9 +12,10 @@ public class Bottle {
     public Bottle(double volume) {
         //в котором бутылка заполняется массивом из пузырьков из рассчета 10000 на каждый литр
         this.volume = volume;
-        Bubbles[] bubbles = new Bubbles[(int) volume * 10000];
+        Bubbles[] bubbles = new Bubbles[(int) (volume * 10000)];
         this.sparklingWater = new SparklingWater();
         this.sparklingWater.pump(bubbles);
+
     }
 
 
@@ -28,6 +29,10 @@ public class Bottle {
         //который устанавливает температуру воды в бутылке
         System.out.println(String.format("устанавливает температуру воды в бутылке равную %s" + temperature));
         this.sparklingWater.setTemperature(temperature);
+    }
+
+    public void isHasWarmed() {
+        this.sparklingWater.setHasWarmed(true);
     }
 
 
