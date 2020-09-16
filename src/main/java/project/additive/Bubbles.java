@@ -1,15 +1,21 @@
 package main.java.project.additive;
 
 public class Bubbles {
-    public static final double bubbleVolume = 0.3;
-    String gazComposition = "undefined";
+    private static final double bubbleVolume = 0.3;
+    private String gazComposition = "undefined";
 
-    public Bubbles(String gazComposition) {
+
+    public Bubbles (String gazComposition) {
         this.gazComposition = gazComposition;
     }
 
-    public void boom() {
-        System.out.println("Cramp!");
+    public static double getBubbleVolume() {
+        return bubbleVolume;
+    }
+
+    public void cramp() {
+        //который в консоль выводит слово "Cramp!"
+        System.out.println("Cramp");
     }
 
 }
