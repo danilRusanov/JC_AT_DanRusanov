@@ -3,8 +3,7 @@ package main.java.tasks.day5;
 
 import org.w3c.dom.ls.LSOutput;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Arrays;
 
 public class StringTask {
 
@@ -57,27 +56,54 @@ public class StringTask {
     ip 212.168.101.5: ok - 3, failed - 2*/
 
 
-    String log = "access_log.2020.09.07 2.168.101.5 granted\naccess_log.2020.09.07 212.168.101.5 granted\naccess_log.2020.09.07 212.168.101.5 granted\naccess_log.2020.09.07 212.168.101.6 denied";
+        String log = "access_log.2020.09.07 2.168.101.5 granted\naccess_log.2020.09.07 212.168.101.5 denied\naccess_log.2020.09.07 212.168.101.5 granted\naccess_log.2020.09.07 212.168.101.6 denied";
 
-    Matcher matcher = Pattern.compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}").matcher(log);
-
-        while(matcher.find()) {
-
-            String ip = matcher.group();
-            int grantedCount = 0;
-            int deniedCount = 0;
+        String[] array1 = log.split("\\n");
+        String[][] arrayProessed = new String[array1.length][2];
 
 
-            Matcher granted = Pattern.compile(ip + "\\sgranted").matcher(log);
-            while(granted.find()) {
-                grantedCount++;
+        for (int i = 0; i < array1.length; i++) {
+            String[] arrTemp = array1[i].toString().split(" ");
+            arrayProessed[i][0] = arrTemp[1];
+            arrayProessed[i][1] = arrTemp[2];
+        }
+        System.out.println("Vivod massiva");
+        System.out.print(Arrays.deepToString(arrayProessed));
+
+        Object[][] result1 = new Object[arrayProessed.length][3];
+
+        int okCount = 0;
+        int failCount = 0;
+        int position1 = 0;
+
+        for (int i = 0; i < arrayProessed.length; i++) {
+            for (int j = 0; j < arrayProessed.length; j++) {
+                if (result1[j][0].equals(arrayProessed[i][0].toString())) {
+                    if (arrayProessed[i][1].equalsIgnoreCase("granted")) {
+                        okCount++;
+                        result1[j][1] = Integer.toString(okCount);
+                    }
+                    if (arrayProessed[i][1].equalsIgnoreCase("denied")) {
+                        okCount++;
+                        result1[j][2] = Integer.toString(failCount);
+                    }
+                    position1++;
+                } else {
+                    result1[position1][0] = arrayProessed[i][0];
+                    if (arrayProessed[i][1].equalsIgnoreCase("granted")) {
+                        okCount++;
+                        result1[position1][1] = Integer.toString(okCount);
+                    }
+                    if (arrayProessed[i][1].equalsIgnoreCase("denied")) {
+                        okCount++;
+                        result1[position1][2] = Integer.toString(failCount);
+                    }
+                }
             }
-            Matcher denied = Pattern.compile(ip + "\\sdenied").matcher(log);
-            while(denied.find()) {
-                deniedCount++;
-            }
-            System.out.println("ip " + ip + "; ok - " + grantedCount + " failed = " + deniedCount);
         }
 
+        for (Object[] s : result1) {
+            System.out.println(s);
+        }
     }
 }
