@@ -8,5 +8,10 @@ public class Runner {
         bottle.warm(5);
         bottle.isHasWarmed();
         bottle.open();
+        Thread.sleep(10000);
+        bottle.warm(25);
+        Thread.sleep(3000);
+        bottle.close();
+        bottle.open();
     }
 }

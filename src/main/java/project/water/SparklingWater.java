@@ -70,7 +70,7 @@ public class SparklingWater extends Water {
         while (this.bubbles.size() > 0 && this.isOpened) {
             if (this.hasWarmed && this.getTemperature() <= 40) {
                 time++;
-                if (time % 1 == 0) {
+                if (time % 60 == 0) {
                     int temperature = this.getTemperature();
                     temperature++;
                     this.setTemperature(temperature);
