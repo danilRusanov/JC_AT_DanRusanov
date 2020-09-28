@@ -3,6 +3,9 @@ package main.java.project.boxing;
 import main.java.project.additive.Bubbles;
 import main.java.project.water.SparklingWater;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bottle {
     private double volume;
     private SparklingWater sparklingWater;
@@ -11,10 +14,11 @@ public class Bottle {
     public Bottle(double volume) {
         //в котором бутылка заполняется массивом из пузырьков из рассчета 10000 на каждый литр
         this.volume = volume;
-        Bubbles[] bubbles = new Bubbles[(int) (volume * 10000)];
+        int size = (int) (volume * 10000);
+        List<Bubbles> list = new ArrayList();
         this.sparklingWater = new SparklingWater();
-        this.sparklingWater.pump(bubbles);
-
+        this.sparklingWater.pump(list, size);
+        System.out.println(sparklingWater.getBubbles().size() + "ArraylistSize");
     }
 
 

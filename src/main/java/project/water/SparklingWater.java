@@ -2,10 +2,12 @@ package main.java.project.water;
 
 import main.java.project.additive.Bubbles;
 
+import java.util.List;
+
 public class SparklingWater extends Water {
 
     private Boolean isOpened = false;
-    private Bubbles[] bubbles;
+    private List<Bubbles> bubbles;
     private boolean hasWarmed;
 
 
@@ -22,22 +24,22 @@ public class SparklingWater extends Water {
         this.hasWarmed = hasWarmed;
     }
 
-    public void pump(Bubbles[] bubbles) {
+    public void pump(List<Bubbles> bubbles, int size) {
         //который сетает массив из пузырьков в воду
         System.out.print("Метод сетает массив из пузырьков в воду");
         this.bubbles = bubbles;
-        for (int i = 0; i < bubbles.length; i++) {
-            this.bubbles[i] = new Bubbles("O2");
+        for (int i = 0; i < size; i++) {
+            this.bubbles.add(new Bubbles("O2"));
         }
-        System.out.println("length in pump " + bubbles.length);
+        System.out.println("length in pump " + bubbles.size());
     }
 
-    public void setBubbles(Bubbles[] bubbles) {
-        this.bubbles = bubbles;
-    }
-
-    public Bubbles[] getBubbles() {
+    public List<Bubbles> getBubbles() {
         return bubbles;
+    }
+
+    public void setBubbles(List<Bubbles> bubbles) {
+        this.bubbles = bubbles;
     }
 
     public void checkIsOpened() {
@@ -65,37 +67,38 @@ public class SparklingWater extends Water {
 
     private void degas() throws InterruptedException {
         int time = 0;
-        while (this.bubbles.length > 0 && this.isOpened) {
+        while (this.bubbles.size() > 0 && this.isOpened) {
             if (this.hasWarmed && this.getTemperature() <= 40) {
                 time++;
-                if (time > 0) {
+                if (time % 1 == 0) {
                     int temperature = this.getTemperature();
                     temperature++;
                     this.setTemperature(temperature);
                     System.out.println("Temperature is set to: " + temperature);
-                    time = 0;
                 }
             }
             int count = 0;
-            if (((this.getTemperature() * 5) + 10) > this.bubbles.length) {
-                while (this.bubbles.length != 0) {
+            if (((this.getTemperature() * 5) + 10) > this.bubbles.size()) {
+                while (this.bubbles.size() != 0) {
                     count++;
-                    new Bubbles("CO2").cramp();
-                    this.bubbles = new Bubbles[this.bubbles.length - 1];
+                    this.bubbles.get(this.bubbles.size() -1).cramp();
+                    this.bubbles.remove(this.bubbles.size() -1);
                 }
             }
-            if (((this.getTemperature() * 5 + 10))  <= this.bubbles.length) {
+            if (((this.getTemperature() * 5 + 10))  <= this.bubbles.size()) {
                 for (int i = 0; i < ((this.getTemperature() * 5 + 10)); i++) {
                     count++;
-                    new Bubbles("CO2").cramp();
-                    this.bubbles = new Bubbles[this.bubbles.length - 1];
+                    this.bubbles.get(this.bubbles.size() -1).cramp();
+                    this.bubbles.remove(this.bubbles.size() -1);
                 }
             }
-            if (this.bubbles.length > 0) {
+            if (this.bubbles.size() > 0) {
                 isSparkle();
             }
             System.out.println("Bubbles were pumped in bottle №" + " : " + count);
-            System.out.println("Bubbles left in bottle №" + " : " + this.bubbles.length);
+            System.out.println("Bubbles left in bottle №" + " : " + this.bubbles.size());
+            System.out.println("Temperature is " + this.getTemperature());
+            System.out.println("Time is " + time);
             Thread.sleep(1000);
         }
     }
