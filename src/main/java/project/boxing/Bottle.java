@@ -24,14 +24,8 @@ public class Bottle extends Vessel implements Containable {
     }
 
     //Constructor with defalt values
-    public Bottle() {
-        super(1);
-        this.sparklingWater = sparklingWater;
-    }
-
     public Bottle(double volume, double diameter, int weight, Material material, SparklingWater sparklingWater) {
         super(volume, diameter, weight, material);
-        this.sparklingWater = sparklingWater;
     }
 
     public void open() {
