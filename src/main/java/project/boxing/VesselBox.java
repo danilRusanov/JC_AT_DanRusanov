@@ -6,7 +6,6 @@ public class VesselBox<T> {
     private int position = 0;
 
     public VesselBox(int size) {
-
         this.vesselBoxContainer = (T[]) new Object[size];
         System.out.println("VesselBox object has been created with length is " + vesselBoxContainer.length + " " + vesselBoxContainer.getClass().getTypeName());
     }
@@ -33,6 +32,10 @@ public class VesselBox<T> {
     }
 
     public void print() {
+        if (this.vesselBoxContainer[0] == null) {
+            System.out.println("This vesselbox is empty");
+            return;
+        }
         System.out.printf("I'm vesselbox with %s %s", position, getVesselBoxContainer()[0].getClass());
         for (T object: vesselBoxContainer) {
             System.out.println(" hashcode is " + object);
