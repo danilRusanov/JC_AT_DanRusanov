@@ -5,3 +5,4 @@ out
 *.iml
 /src/class_work/
 /src/test_code/
+.DC_Store
