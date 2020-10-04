@@ -1,5 +1,6 @@
 package main.java.project.boxing;
 
+import class_work.A;
 import main.java.project.additive.Bubbles;
 import main.java.project.material.Material;
 import main.java.project.material.Transformable;
@@ -20,12 +21,16 @@ public class Bottle extends Vessel implements Containable {
         List<Bubbles> list = new ArrayList();
         this.sparklingWater = new SparklingWater();
         this.sparklingWater.pump(list, size);
-        System.out.println(sparklingWater.getBubbles().size() + "ArraylistSize");
+        System.out.println(sparklingWater.getBubbles().size() + " ArraylistSize");
     }
 
     //Constructor with defalt values
-    public Bottle(double volume, double diameter, int weight, Material material, SparklingWater sparklingWater) {
+    public Bottle(double volume, double diameter, int weight, Material material, boolean withSparklingWater) {
         super(volume, diameter, weight, material);
+        if (withSparklingWater == true) {
+            List<Bubbles> list = new ArrayList();
+            this.sparklingWater = new SparklingWater();
+        }
     }
 
     public void open() {
@@ -51,6 +56,29 @@ public class Bottle extends Vessel implements Containable {
 
     public void setSparklingWater(SparklingWater sparklingWater) {
         this.sparklingWater = sparklingWater;
+    }
+
+    public void fillWaterOrGas() {
+
+        if (this.sparklingWater.getBubbles().size() == (int) (this.getVolume() * 10000)) {
+            System.out.println("This bottle is full");
+        }
+
+        if (sparklingWater.getBubbles().size() > 0) {
+
+            int size = (int) (this.getVolume() * 10000);
+            List<Bubbles> list = new ArrayList<>();
+            this.sparklingWater.pump(list, size);
+            System.out.println("This bottle has been fill bubbles as new");
+
+        } else {
+
+            int size = (int) (super.getVolume() * 10000);
+            List<Bubbles> list = new ArrayList<>();
+            this.sparklingWater = new SparklingWater();
+            this.sparklingWater.pump(list, size);
+            System.out.println("This bottle has just been fulled by sparkling water");
+        }
     }
 
     @Override

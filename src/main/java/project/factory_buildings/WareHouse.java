@@ -16,4 +16,7 @@ public class WareHouse {
         vesselBoxList.add(vesselBox);
     }
 
+    public List<VesselBox> getVesselBoxList() {
+        return vesselBoxList;
+    }
 }
