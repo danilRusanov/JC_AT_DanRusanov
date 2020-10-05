@@ -18,15 +18,15 @@ public class Runner {
         Thread.sleep(3000);
         bottle.close();
         bottle.open();
-        VesselBox<Cup> cupVesselBox = new VesselBox<>( 9);
-        cupVesselBox.add(new Cup());
-        cupVesselBox.add(new Cup(), 10);
-        cupVesselBox.print();
+//        VesselBox<Cup> cupVesselBox = new VesselBox<>( 9);
+//        cupVesselBox.add(new Cup());
+//        cupVesselBox.add(new Cup(), 10);
+//        cupVesselBox.print();
         VesselBox<Bottle> bottleVesselBox = new VesselBox<>(25);
         bottleVesselBox.print();
 
         WareHouse wareHouse = new WareHouse();
-        wareHouse.add(cupVesselBox);
+//        wareHouse.add(cupVesselBox);
         wareHouse.add(bottleVesselBox);
 
 

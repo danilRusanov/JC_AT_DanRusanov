@@ -4,6 +4,8 @@ import main.java.project.stuff.Bubbles;
 import main.java.project.stuff.Water;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SparklingWater extends Water {
 
@@ -29,9 +31,14 @@ public class SparklingWater extends Water {
         //который сетает массив из пузырьков в воду
         System.out.print("Метод сетает массив из пузырьков в воду");
         this.bubbles = bubbles;
-        for (int i = 0; i < size; i++) {
-            this.bubbles.add(new Bubbles("O2"));
-        }
+        this.bubbles = Stream.generate(() -> new Bubbles("Co2"))
+                .limit(size)
+                .collect(Collectors.toList());
+//
+//        for (int i = 0; i < size; i++) {
+//            this.bubbles.add(new Bubbles("O2"));
+//        }
+
         System.out.println("length in pump " + bubbles.size());
     }
 
@@ -68,6 +75,7 @@ public class SparklingWater extends Water {
 
     private void degas() throws InterruptedException {
         int time = 0;
+
         while (this.bubbles.size() > 0 && this.isOpened) {
             if (this.hasWarmed && this.getTemperature() <= 40) {
                 time++;

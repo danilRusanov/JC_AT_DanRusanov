@@ -2,7 +2,7 @@ package main.java.project.factory;
 
 import main.java.project.vessels.Vessel;
 
-public class VesselBox<T extends Vessel> {
+public class VesselBox<T> {
 
     private T[] vesselBoxContainer;
     private int position = 0;
