@@ -1,6 +1,7 @@
-package main.java.project.water;
+package main.java.project.stuff;
 
-import main.java.project.additive.Bubbles;
+import main.java.project.stuff.Bubbles;
+import main.java.project.stuff.Water;
 
 import java.util.List;
 

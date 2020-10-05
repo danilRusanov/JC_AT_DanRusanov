@@ -1,4 +1,4 @@
-package main.java.project.additive;
+package main.java.project.stuff;
 
 public class Bubbles {
     private static final double bubbleVolume = 0.3;

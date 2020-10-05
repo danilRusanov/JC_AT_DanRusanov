@@ -1,6 +1,8 @@
-package main.java.project.boxing;
+package main.java.project.factory;
 
-public class VesselBox<T> {
+import main.java.project.vessels.Vessel;
+
+public class VesselBox<T extends Vessel> {
 
     private T[] vesselBoxContainer;
     private int position = 0;

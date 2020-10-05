@@ -1,4 +1,4 @@
-package main.java.project.material;
+package main.java.project.stuff;
 
 public interface Transformable {
     void mix();
