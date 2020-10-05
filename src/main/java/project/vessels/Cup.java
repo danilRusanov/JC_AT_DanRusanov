@@ -1,17 +1,17 @@
-package main.java.project.boxing;
+package main.java.project.vessels;
 
 import main.java.project.material.Material;
-import main.java.project.material.Transformable;
+import main.java.project.stuff.Transformable;
 
-public class Can extends Vessel implements Containable {
+public class Cup extends Vessel implements Containable {
 
-    public Can(double volume, double diameter, int weight, Material material) {
+    public Cup(double volume, double diameter, int weight, Material material) {
         super(volume, diameter, weight, material);
     }
 
     //Constructor with defalt values
-    public Can() {
-        super(15, 20, 30, new Material(71,"Red",1000){});
+    public Cup() {
+        super(1, 2, 3, new Material(1,"Red",10){});
     }
 
     @Override

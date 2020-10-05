@@ -1,6 +1,4 @@
-package main.java.project.factory_buildings;
-
-import main.java.project.boxing.VesselBox;
+package main.java.project.factory;
 
 import java.util.ArrayList;
 import java.util.List;

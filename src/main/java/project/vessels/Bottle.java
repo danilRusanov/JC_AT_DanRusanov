@@ -1,10 +1,9 @@
-package main.java.project.boxing;
+package main.java.project.vessels;
 
-import class_work.A;
-import main.java.project.additive.Bubbles;
+import main.java.project.stuff.Bubbles;
 import main.java.project.material.Material;
-import main.java.project.material.Transformable;
-import main.java.project.water.SparklingWater;
+import main.java.project.stuff.Transformable;
+import main.java.project.stuff.SparklingWater;
 
 import java.util.ArrayList;
 import java.util.List;
