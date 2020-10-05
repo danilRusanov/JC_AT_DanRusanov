@@ -1,15 +1,10 @@
 package main.java.project.run;
 
-import main.java.project.boxing.Bottle;
-import main.java.project.boxing.Cup;
-import main.java.project.boxing.Vessel;
-import main.java.project.boxing.VesselBox;
-import main.java.project.factory_buildings.WareHouse;
-import main.java.project.material.Material;
+import main.java.project.vessels.Bottle;
+import main.java.project.vessels.Cup;
+import main.java.project.factory.VesselBox;
+import main.java.project.factory.WareHouse;
 import main.java.project.material.Plastic;
-import main.java.project.water.SparklingWater;
-
-import java.lang.reflect.Array;
 
 public class Runner {
     private static Object Cup;
@@ -39,13 +34,13 @@ public class Runner {
         vesselBox.add(new Bottle(1, 2,3, new Plastic(), false   ), 25);
 
 
-        vesselBox.getVesselBoxContainer()[0];
-        bottle2.fillWaterOrGas();
-        bottle2.fillWaterOrGas();
-        bottle2.open();
-        Thread.sleep(3000);
-        bottle2.close();
-        bottle2.fillWaterOrGas();
+//        vesselBox.getVesselBoxContainer()[0];
+//        bottle2.fillWaterOrGas();
+//        bottle2.fillWaterOrGas();
+//        bottle2.open();
+//        Thread.sleep(3000);
+//        bottle2.close();
+//        bottle2.fillWaterOrGas();
 
 
 
