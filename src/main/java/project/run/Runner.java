@@ -18,7 +18,7 @@ public class Runner {
         Thread.sleep(3000);
         bottle.close();
         bottle.open();
-//        VesselBox<Cup> cupVesselBox = new VesselBox<>( 9);
+//        VesselBox<Cup> cupVesselBox = new   <>( 9);
 //        cupVesselBox.add(new Cup());
 //        cupVesselBox.add(new Cup(), 10);
 //        cupVesselBox.print();
