@@ -1,6 +1,12 @@
 package main.java.tasks.day9;
 
-import java.util.ArrayList;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,5 +56,24 @@ public class RunnerStreams {
         // оставить только те, что начинаются с "Date log:",
         // в каждой строке оставить только первые 20 символов,
         // к каждой в конец дописать значение текущей даты
+
+        System.out.println("Reading file by streams");
+
+        String fileName = "/Users/daniilrusanov/dev/JC_AT_DanRusanov/src/main/java/tasks/day9/file_reader/file.txt";
+
+        //read file into stream, try-with-resources
+        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+
+            Arrays.stream(stream.skip(4)
+                    .collect(Collectors.joining())
+                    .split("<br>")).forEach(System.out::println);
+//                    .filter(s -> s.startsWith("Date log:"))
+//                    .map(s -> s.length() > 20 ? s.substring(0, 20) : s)
+//                    .map(s -> s + " " + new SimpleDateFormat("DDMMYYYY").format(Calendar.getInstance().getTime()))
+//                    .forEach(System.out::println);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
